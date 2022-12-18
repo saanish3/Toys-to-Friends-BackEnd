@@ -37,7 +37,6 @@ def signup():
 
 
 @app.route('/toys', methods=['POST'])
-@login_required
 def add_toy():
     # Get the toy's information from the request
     name = request.form['name']
@@ -57,7 +56,6 @@ def add_toy():
     return jsonify({'message': 'Toy added successfully!', 'toy_id': toy_id}), 200
 
 @app.route('/toys/<toy_id>', methods=['PUT'])
-@login_required
 def update_toy(toy_id):
     # Get the updated toy information from the request
     name = request.form['name']
@@ -77,7 +75,6 @@ def update_toy(toy_id):
     return jsonify({'message': 'Toy updated successfully!'}), 200
 
 @app.route('/toys/<toy_id>', methods=['DELETE'])
-@login_required
 def delete_toy(toy_id):
     # Delete the toy from the database
     db.child('toys').child(toy_id).remove()
